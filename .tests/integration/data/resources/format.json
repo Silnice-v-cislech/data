@@ -1,0 +1,99 @@
+{
+    "pocet_nehod": {
+        "label": "Po\\u010det nehod",
+        "borderColor": "#36A2EB",
+        "backgroundColor": "#36A2EB"
+    },
+    "pocet_nehod_normalized": {
+        "label": "Po\\u010det nehod - normalizace",
+        "borderColor": "#36A2EB",
+        "backgroundColor": "#FFFFFF",
+        "borderDash": [5, 5]
+    },
+    "pocet_nehod_selected_months": {
+        "label": "Po\\u010det nehod v měsících",
+        "style": {
+            "s01": {
+                "borderColor": "#6baed6",
+                "backgroundColor": "#6baed6"
+            },
+            "s02": {
+                "borderColor": "#9ecae1",
+                "backgroundColor": "#9ecae1"
+            },
+            "s03": {
+                "borderColor": "#31a354",
+                "backgroundColor": "#31a354"
+            },
+            "s04": {
+                "borderColor": "#74c476",
+                "backgroundColor": "#74c476"
+            },
+            "s05": {
+                "borderColor": "#a1d99b",
+                "backgroundColor": "#a1d99b"
+            },
+            "s06": {
+                "borderColor": "#e6550d",
+                "backgroundColor": "#e6550d"
+            },
+            "s07": {
+                "borderColor": "#fd8d3c",
+                "backgroundColor": "#fd8d3c"
+            },
+            "s08": {
+                "borderColor": "#fdae6b",
+                "backgroundColor": "#fdae6b"
+            },
+            "s09": {
+                "borderColor": "#756bb1",
+                "backgroundColor": "#756bb1"
+            },
+            "s10": {
+                "borderColor": "#9e9ac8",
+                "backgroundColor": "#9e9ac8"
+            },
+            "s11": {
+                "borderColor": "#bcbddc",
+                "backgroundColor": "#bcbddc"
+            },
+            "s12": {
+                "borderColor": "#3182bd",
+                "backgroundColor": "#3182bd"
+            }
+        }
+    },
+    "pocet_usmrcenych": {
+        "label": "Po\\u010det usmrcen\\u00fdch",
+        "borderColor": "#AA00FF",
+        "backgroundColor": "#AA00FF"
+    },
+    "pocet_usmrcenych_normalized": {
+        "label": "Po\\u010det usmrcen\\u00fdch - normalizace",
+        "borderColor": "#AA00FF",
+        "backgroundColor": "#FFFFFF",
+        "borderDash": [5, 5]
+    },
+    "tezce_zranenych_osob": {
+        "label": "T\\u011b\\u017ece zran\\u011bn\\u00fdch osob",
+        "borderColor": "#D50000",
+        "backgroundColor": "#D50000"
+    },
+    "tezce_zranenych_osob_normalized": {
+        "label": "T\\u011b\\u017ece zran\\u011bn\\u00fdch osob - normalizace",
+        "borderColor": "#D50000",
+        "backgroundColor": "#FFFFFF",
+        "borderDash": [5, 5]
+    },
+    "lehce_zranenych_osob": {
+        "label": "Lehce zran\\u011bn\\u00fdch osob",
+        "borderColor": "#FF6D00",
+        "backgroundColor": "#FF6D00"
+    },
+    "lehce_zranenych_osob_normalized": {
+        "label": "Lehce zran\\u011bn\\u00fdch osob - normalizace",
+        "borderColor": "#FF6D00",
+        "backgroundColor": "#FFFFFF",
+        "borderDash": [5, 5]
+    }
+}
