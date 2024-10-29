@@ -1,0 +1,230 @@
+{
+    "pocet_nehod": {
+      "label": "Po\\u010det nehod",
+      "borderColor": "#36A2EB",
+      "backgroundColor": "#36A2EB",
+      "data": {
+        "s0": {
+          "2016-01": 1,
+          "2016-02": 1,
+          "2023-01": 1,
+          "2023-05": 1
+        }
+      }
+    },
+    "pocet_usmrcenych": {
+      "label": "Po\\u010det usmrcen\\u00fdch",
+      "borderColor": "#AA00FF",
+      "backgroundColor": "#AA00FF",
+      "data": {
+        "s0": {
+          "2016-01": 2,
+          "2016-02": 3,
+          "2023-01": 3,
+          "2023-05": 5
+        }
+      }
+    },
+    "tezce_zranenych_osob": {
+      "label": "T\\u011b\\u017ece zran\\u011bn\\u00fdch osob",
+      "borderColor": "#D50000",
+      "backgroundColor": "#D50000",
+      "data": {
+        "s0": {
+          "2016-01": 4,
+          "2016-02": 5,
+          "2023-01": 2,
+          "2023-05": 3
+        }
+      }
+    },
+    "lehce_zranenych_osob": {
+      "label": "Lehce zran\\u011bn\\u00fdch osob",
+      "borderColor": "#FF6D00",
+      "backgroundColor": "#FF6D00",
+      "data": {
+        "s0": {
+          "2016-01": 10,
+          "2016-02": 15,
+          "2023-01": 12,
+          "2023-05": 13
+        }
+      }
+    },
+    "pocet_nehod_normalized": {
+      "label": "Po\\u010det nehod - normalizace",
+      "borderColor": "#36A2EB",
+      "backgroundColor": "#FFFFFF",
+      "borderDash": [
+        5,
+        5
+      ],
+      "data": {
+        "s0": {
+          "2016-01": 0.967741935483871,
+          "2016-02": 1.0344827586206897,
+          "2023-01": 0.967741935483871,
+          "2023-05": 0.967741935483871
+        }
+      }
+    },
+    "pocet_usmrcenych_normalized": {
+      "label": "Po\\u010det usmrcen\\u00fdch - normalizace",
+      "borderColor": "#AA00FF",
+      "backgroundColor": "#FFFFFF",
+      "borderDash": [
+        5,
+        5
+      ],
+      "data": {
+        "s0": {
+          "2016-01": 1.935483870967742,
+          "2016-02": 3.103448275862069,
+          "2023-01": 2.903225806451613,
+          "2023-05": 4.838709677419355
+        }
+      }
+    },
+    "tezce_zranenych_osob_normalized": {
+      "label": "T\\u011b\\u017ece zran\\u011bn\\u00fdch osob - normalizace",
+      "borderColor": "#D50000",
+      "backgroundColor": "#FFFFFF",
+      "borderDash": [
+        5,
+        5
+      ],
+      "data": {
+        "s0": {
+          "2016-01": 3.870967741935484,
+          "2016-02": 5.172413793103448,
+          "2023-01": 1.935483870967742,
+          "2023-05": 2.903225806451613
+        }
+      }
+    },
+    "lehce_zranenych_osob_normalized": {
+      "label": "Lehce zran\\u011bn\\u00fdch osob - normalizace",
+      "borderColor": "#FF6D00",
+      "backgroundColor": "#FFFFFF",
+      "borderDash": [
+        5,
+        5
+      ],
+      "data": {
+        "s0": {
+          "2016-01": 9.67741935483871,
+          "2016-02": 15.517241379310345,
+          "2023-01": 11.612903225806452,
+          "2023-05": 12.580645161290324
+        }
+      }
+    },
+    "pocet_nehod_selected_months": {
+      "label": "Po\\u010det nehod v měsících",
+      "style": {
+        "s01": {
+          "borderColor": "#6baed6",
+          "backgroundColor": "#6baed6"
+        },
+        "s02": {
+          "borderColor": "#9ecae1",
+          "backgroundColor": "#9ecae1"
+        },
+        "s03": {
+          "borderColor": "#31a354",
+          "backgroundColor": "#31a354"
+        },
+        "s04": {
+          "borderColor": "#74c476",
+          "backgroundColor": "#74c476"
+        },
+        "s05": {
+          "borderColor": "#a1d99b",
+          "backgroundColor": "#a1d99b"
+        },
+        "s06": {
+          "borderColor": "#e6550d",
+          "backgroundColor": "#e6550d"
+        },
+        "s07": {
+          "borderColor": "#fd8d3c",
+          "backgroundColor": "#fd8d3c"
+        },
+        "s08": {
+          "borderColor": "#fdae6b",
+          "backgroundColor": "#fdae6b"
+        },
+        "s09": {
+          "borderColor": "#756bb1",
+          "backgroundColor": "#756bb1"
+        },
+        "s10": {
+          "borderColor": "#9e9ac8",
+          "backgroundColor": "#9e9ac8"
+        },
+        "s11": {
+          "borderColor": "#bcbddc",
+          "backgroundColor": "#bcbddc"
+        },
+        "s12": {
+          "borderColor": "#3182bd",
+          "backgroundColor": "#3182bd"
+        }
+      },
+      "data": {
+        "s01": {
+          "2016": 1,
+          "2023": 1
+        },
+        "s02": {
+          "2016": 1
+        },
+        "s05": {
+          "2023": 1
+        }
+      }
+    },
+    "pocet_usmrcenych_selected_months": {
+      "data": {
+        "s01": {
+          "2016": 2,
+          "2023": 3
+        },
+        "s02": {
+          "2016": 3
+        },
+        "s05": {
+          "2023": 5
+        }
+      }
+    },
+    "tezce_zranenych_osob_selected_months": {
+      "data": {
+        "s01": {
+          "2016": 4,
+          "2023": 2
+        },
+        "s02": {
+          "2016": 5
+        },
+        "s05": {
+          "2023": 3
+        }
+      }
+    },
+    "lehce_zranenych_osob_selected_months": {
+      "data": {
+        "s01": {
+          "2016": 10,
+          "2023": 12
+        },
+        "s02": {
+          "2016": 15
+        },
+        "s05": {
+          "2023": 13
+        }
+      }
+    }
+  }
+  
