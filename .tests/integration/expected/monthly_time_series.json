@@ -1,141 +1,438 @@
 {
   "pocet_nehod": {
-    "label": "Po\\u010det nehod",
-    "borderColor": "#36A2EB",
-    "backgroundColor": "#36A2EB",
     "data": {
-      "s0": {
+      "base": {
         "2016-01": 1,
         "2016-02": 1,
-        "2023-01": 1,
-        "2023-05": 1
+        "2023-01": 2
+      },
+      "normalized": {
+        "2016-01": 0.967741935483871,
+        "2016-02": 1.0344827586206897,
+        "2023-01": 1.935483870967742
+      },
+      "month01": {
+        "2016": 1,
+        "2023": 2
+      },
+      "month02": {
+        "2016": 1
+      },
+      "month03": {},
+      "month04": {},
+      "month05": {},
+      "month06": {},
+      "month07": {},
+      "month08": {},
+      "month09": {},
+      "month10": {},
+      "month11": {},
+      "month12": {}
+    },
+    "styles": {
+      "base": {
+        "borderColor": "#36A2EB",
+        "backgroundColor": "#36A2EB"
+      },
+      "normalized": {
+        "borderColor": "#36A2EB",
+        "backgroundColor": "#FFFFFF",
+        "borderDash": [
+          5,
+          5
+        ]
+      },
+      "month01": {
+        "borderColor": "#6baed6",
+        "backgroundColor": "#6baed6"
+      },
+      "month02": {
+        "borderColor": "#9ecae1",
+        "backgroundColor": "#9ecae1"
+      },
+      "month03": {
+        "borderColor": "#31a354",
+        "backgroundColor": "#31a354"
+      },
+      "month04": {
+        "borderColor": "#74c476",
+        "backgroundColor": "#74c476"
+      },
+      "month05": {
+        "borderColor": "#a1d99b",
+        "backgroundColor": "#a1d99b"
+      },
+      "month06": {
+        "borderColor": "#e6550d",
+        "backgroundColor": "#e6550d"
+      },
+      "month07": {
+        "borderColor": "#fd8d3c",
+        "backgroundColor": "#fd8d3c"
+      },
+      "month08": {
+        "borderColor": "#fdae6b",
+        "backgroundColor": "#fdae6b"
+      },
+      "month09": {
+        "borderColor": "#756bb1",
+        "backgroundColor": "#756bb1"
+      },
+      "month10": {
+        "borderColor": "#9e9ac8",
+        "backgroundColor": "#9e9ac8"
+      },
+      "month11": {
+        "borderColor": "#bcbddc",
+        "backgroundColor": "#bcbddc"
+      },
+      "month12": {
+        "borderColor": "#3182bd",
+        "backgroundColor": "#3182bd"
       }
+    },
+    "labels": {
+      "base": "Po\\u010det nehod",
+      "normalized": "Po\\u010det nehod - normalizace",
+      "month01": "Po\\u010det nehod - leden",
+      "month02": "Po\\u010det nehod - únor",
+      "month03": "Po\\u010det nehod - březen",
+      "month04": "Po\\u010det nehod - duben",
+      "month05": "Po\\u010det nehod - květen",
+      "month06": "Po\\u010det nehod - červen",
+      "month07": "Po\\u010det nehod - červenec",
+      "month08": "Po\\u010det nehod - srpen",
+      "month09": "Po\\u010det nehod - září",
+      "month10": "Po\\u010det nehod - říjen",
+      "month11": "Po\\u010det nehod - listopad",
+      "month12": "Po\\u010det nehod - prosinec"
     }
   },
   "pocet_usmrcenych": {
     "data": {
-      "s0": {
+      "base": {
         "2016-01": 2,
         "2016-02": 3,
-        "2023-01": 3,
-        "2023-05": 5
+        "2023-01": 8
+      },
+      "normalized": {
+        "2016-01": 1.935483870967742,
+        "2016-02": 3.103448275862069,
+        "2023-01": 7.741935483870968
+      },
+      "month01": {
+        "2016": 2,
+        "2023": 8
+      },
+      "month02": {
+        "2016": 3
+      },
+      "month03": {},
+      "month04": {},
+      "month05": {},
+      "month06": {},
+      "month07": {},
+      "month08": {},
+      "month09": {},
+      "month10": {},
+      "month11": {},
+      "month12": {}
+    },
+    "styles": {
+      "base": {
+        "borderColor": "#AA00FF",
+        "backgroundColor": "#AA00FF"
+      },
+      "normalized": {
+        "borderColor": "#AA00FF",
+        "backgroundColor": "#FFFFFF",
+        "borderDash": [
+          5,
+          5
+        ]
+      },
+      "month01": {
+        "borderColor": "#6baed6",
+        "backgroundColor": "#6baed6"
+      },
+      "month02": {
+        "borderColor": "#9ecae1",
+        "backgroundColor": "#9ecae1"
+      },
+      "month03": {
+        "borderColor": "#31a354",
+        "backgroundColor": "#31a354"
+      },
+      "month04": {
+        "borderColor": "#74c476",
+        "backgroundColor": "#74c476"
+      },
+      "month05": {
+        "borderColor": "#a1d99b",
+        "backgroundColor": "#a1d99b"
+      },
+      "month06": {
+        "borderColor": "#e6550d",
+        "backgroundColor": "#e6550d"
+      },
+      "month07": {
+        "borderColor": "#fd8d3c",
+        "backgroundColor": "#fd8d3c"
+      },
+      "month08": {
+        "borderColor": "#fdae6b",
+        "backgroundColor": "#fdae6b"
+      },
+      "month09": {
+        "borderColor": "#756bb1",
+        "backgroundColor": "#756bb1"
+      },
+      "month10": {
+        "borderColor": "#9e9ac8",
+        "backgroundColor": "#9e9ac8"
+      },
+      "month11": {
+        "borderColor": "#bcbddc",
+        "backgroundColor": "#bcbddc"
+      },
+      "month12": {
+        "borderColor": "#3182bd",
+        "backgroundColor": "#3182bd"
       }
+    },
+    "labels": {
+      "base": "Po\\u010det usmrcen\\u00fdch",
+      "normalized": "Po\\u010det usmrcen\\u00fdch - normalizace",
+      "month01": "Po\\u010det usmrcen\\u00fdch - leden",
+      "month02": "Po\\u010det usmrcen\\u00fdch - únor",
+      "month03": "Po\\u010det usmrcen\\u00fdch - březen",
+      "month04": "Po\\u010det usmrcen\\u00fdch - duben",
+      "month05": "Po\\u010det usmrcen\\u00fdch - květen",
+      "month06": "Po\\u010det usmrcen\\u00fdch - červen",
+      "month07": "Po\\u010det usmrcen\\u00fdch - červenec",
+      "month08": "Po\\u010det usmrcen\\u00fdch - srpen",
+      "month09": "Po\\u010det usmrcen\\u00fdch - září",
+      "month10": "Po\\u010det usmrcen\\u00fdch - říjen",
+      "month11": "Po\\u010det usmrcen\\u00fdch - listopad",
+      "month12": "Po\\u010det usmrcen\\u00fdch - prosinec"
     }
   },
   "tezce_zranenych_osob": {
     "data": {
-      "s0": {
+      "base": {
         "2016-01": 4,
         "2016-02": 5,
-        "2023-01": 2,
-        "2023-05": 3
+        "2023-01": 5
+      },
+      "normalized": {
+        "2016-01": 3.870967741935484,
+        "2016-02": 5.172413793103448,
+        "2023-01": 4.838709677419355
+      },
+      "month01": {
+        "2016": 4,
+        "2023": 5
+      },
+      "month02": {
+        "2016": 5
+      },
+      "month03": {},
+      "month04": {},
+      "month05": {},
+      "month06": {},
+      "month07": {},
+      "month08": {},
+      "month09": {},
+      "month10": {},
+      "month11": {},
+      "month12": {}
+    },
+    "styles": {
+      "base": {
+        "borderColor": "#D50000",
+        "backgroundColor": "#D50000"
+      },
+      "normalized": {
+        "borderColor": "#D50000",
+        "backgroundColor": "#FFFFFF",
+        "borderDash": [
+          5,
+          5
+        ]
+      },
+      "month01": {
+        "borderColor": "#6baed6",
+        "backgroundColor": "#6baed6"
+      },
+      "month02": {
+        "borderColor": "#9ecae1",
+        "backgroundColor": "#9ecae1"
+      },
+      "month03": {
+        "borderColor": "#31a354",
+        "backgroundColor": "#31a354"
+      },
+      "month04": {
+        "borderColor": "#74c476",
+        "backgroundColor": "#74c476"
+      },
+      "month05": {
+        "borderColor": "#a1d99b",
+        "backgroundColor": "#a1d99b"
+      },
+      "month06": {
+        "borderColor": "#e6550d",
+        "backgroundColor": "#e6550d"
+      },
+      "month07": {
+        "borderColor": "#fd8d3c",
+        "backgroundColor": "#fd8d3c"
+      },
+      "month08": {
+        "borderColor": "#fdae6b",
+        "backgroundColor": "#fdae6b"
+      },
+      "month09": {
+        "borderColor": "#756bb1",
+        "backgroundColor": "#756bb1"
+      },
+      "month10": {
+        "borderColor": "#9e9ac8",
+        "backgroundColor": "#9e9ac8"
+      },
+      "month11": {
+        "borderColor": "#bcbddc",
+        "backgroundColor": "#bcbddc"
+      },
+      "month12": {
+        "borderColor": "#3182bd",
+        "backgroundColor": "#3182bd"
       }
+    },
+    "labels": {
+      "base": "T\\u011b\\u017ece zran\\u011bn\\u00fdch osob",
+      "normalized": "T\\u011b\\u017ece zran\\u011bn\\u00fdch osob - normalizace",
+      "month01": "T\\u011b\\u017ece zran\\u011bn\\u00fdch osob - leden",
+      "month02": "T\\u011b\\u017ece zran\\u011bn\\u00fdch osob - únor",
+      "month03": "T\\u011b\\u017ece zran\\u011bn\\u00fdch osob - březen",
+      "month04": "T\\u011b\\u017ece zran\\u011bn\\u00fdch osob - duben",
+      "month05": "T\\u011b\\u017ece zran\\u011bn\\u00fdch osob - květen",
+      "month06": "T\\u011b\\u017ece zran\\u011bn\\u00fdch osob - červen",
+      "month07": "T\\u011b\\u017ece zran\\u011bn\\u00fdch osob - červenec",
+      "month08": "T\\u011b\\u017ece zran\\u011bn\\u00fdch osob - srpen",
+      "month09": "T\\u011b\\u017ece zran\\u011bn\\u00fdch osob - září",
+      "month10": "T\\u011b\\u017ece zran\\u011bn\\u00fdch osob - říjen",
+      "month11": "T\\u011b\\u017ece zran\\u011bn\\u00fdch osob - listopad",
+      "month12": "T\\u011b\\u017ece zran\\u011bn\\u00fdch osob - prosinec"
     }
   },
   "lehce_zranenych_osob": {
     "data": {
-      "s0": {
+      "base": {
         "2016-01": 10,
         "2016-02": 15,
-        "2023-01": 12,
-        "2023-05": 13
-      }
-    }
-  },
-  "pocet_nehod_normalized": {
-    "data": {
-      "s0": {
-        "2016-01": 0.967741935483871,
-        "2016-02": 1.0344827586206897,
-        "2023-01": 0.967741935483871,
-        "2023-05": 0.967741935483871
-      }
-    }
-  },
-  "pocet_usmrcenych_normalized": {
-    "data": {
-      "s0": {
-        "2016-01": 1.935483870967742,
-        "2016-02": 3.103448275862069,
-        "2023-01": 2.903225806451613,
-        "2023-05": 4.838709677419355
-      }
-    }
-  },
-  "tezce_zranenych_osob_normalized": {
-    "data": {
-      "s0": {
-        "2016-01": 3.870967741935484,
-        "2016-02": 5.172413793103448,
-        "2023-01": 1.935483870967742,
-        "2023-05": 2.903225806451613
-      }
-    }
-  },
-  "lehce_zranenych_osob_normalized": {
-    "data": {
-      "s0": {
+        "2023-01": 25
+      },
+      "normalized": {
         "2016-01": 9.67741935483871,
         "2016-02": 15.517241379310345,
-        "2023-01": 11.612903225806452,
-        "2023-05": 12.580645161290324
-      }
-    }
-  },
-  "pocet_nehod_selected_months": {
-    "data": {
-      "s01": {
-        "2016": 1,
-        "2023": 1
+        "2023-01": 24.193548387096772
       },
-      "s02": {
-        "2016": 1
-      },
-      "s05": {
-        "2023": 1
-      }
-    }
-  },
-  "pocet_usmrcenych_selected_months": {
-    "data": {
-      "s01": {
-        "2016": 2,
-        "2023": 3
-      },
-      "s02": {
-        "2016": 3
-      },
-      "s05": {
-        "2023": 5
-      }
-    }
-  },
-  "tezce_zranenych_osob_selected_months": {
-    "data": {
-      "s01": {
-        "2016": 4,
-        "2023": 2
-      },
-      "s02": {
-        "2016": 5
-      },
-      "s05": {
-        "2023": 3
-      }
-    }
-  },
-  "lehce_zranenych_osob_selected_months": {
-    "data": {
-      "s01": {
+      "month01": {
         "2016": 10,
-        "2023": 12
+        "2023": 25
       },
-      "s02": {
+      "month02": {
         "2016": 15
       },
-      "s05": {
-        "2023": 13
+      "month03": {},
+      "month04": {},
+      "month05": {},
+      "month06": {},
+      "month07": {},
+      "month08": {},
+      "month09": {},
+      "month10": {},
+      "month11": {},
+      "month12": {}
+    },
+    "styles": {
+      "base": {
+        "borderColor": "#FF6D00",
+        "backgroundColor": "#FF6D00"
+      },
+      "normalized": {
+        "borderColor": "#FF6D00",
+        "backgroundColor": "#FFFFFF",
+        "borderDash": [
+          5,
+          5
+        ]
+      },
+      "month01": {
+        "borderColor": "#6baed6",
+        "backgroundColor": "#6baed6"
+      },
+      "month02": {
+        "borderColor": "#9ecae1",
+        "backgroundColor": "#9ecae1"
+      },
+      "month03": {
+        "borderColor": "#31a354",
+        "backgroundColor": "#31a354"
+      },
+      "month04": {
+        "borderColor": "#74c476",
+        "backgroundColor": "#74c476"
+      },
+      "month05": {
+        "borderColor": "#a1d99b",
+        "backgroundColor": "#a1d99b"
+      },
+      "month06": {
+        "borderColor": "#e6550d",
+        "backgroundColor": "#e6550d"
+      },
+      "month07": {
+        "borderColor": "#fd8d3c",
+        "backgroundColor": "#fd8d3c"
+      },
+      "month08": {
+        "borderColor": "#fdae6b",
+        "backgroundColor": "#fdae6b"
+      },
+      "month09": {
+        "borderColor": "#756bb1",
+        "backgroundColor": "#756bb1"
+      },
+      "month10": {
+        "borderColor": "#9e9ac8",
+        "backgroundColor": "#9e9ac8"
+      },
+      "month11": {
+        "borderColor": "#bcbddc",
+        "backgroundColor": "#bcbddc"
+      },
+      "month12": {
+        "borderColor": "#3182bd",
+        "backgroundColor": "#3182bd"
       }
+    },
+    "labels": {
+      "base": "Lehce zran\\u011bn\\u00fdch osob",
+      "normalized": "Lehce zran\\u011bn\\u00fdch osob - normalizace",
+      "month01": "Lehce zran\\u011bn\\u00fdch osob - leden",
+      "month02": "Lehce zran\\u011bn\\u00fdch osob - únor",
+      "month03": "Lehce zran\\u011bn\\u00fdch osob - březen",
+      "month04": "Lehce zran\\u011bn\\u00fdch osob - duben",
+      "month05": "Lehce zran\\u011bn\\u00fdch osob - květen",
+      "month06": "Lehce zran\\u011bn\\u00fdch osob - červen",
+      "month07": "Lehce zran\\u011bn\\u00fdch osob - červenec",
+      "month08": "Lehce zran\\u011bn\\u00fdch osob - srpen",
+      "month09": "Lehce zran\\u011bn\\u00fdch osob - září",
+      "month10": "Lehce zran\\u011bn\\u00fdch osob - říjen",
+      "month11": "Lehce zran\\u011bn\\u00fdch osob - listopad",
+      "month12": "Lehce zran\\u011bn\\u00fdch osob - prosinec"
     }
   }
 }

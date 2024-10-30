@@ -13,36 +13,37 @@ SELECTED_MONTHS_SUFFIX_NAME = "_selected_months"
 base = load_json(snakemake.input["base"])
 normalized = load_json(snakemake.input["normalized"])
 selected_months = load_json(snakemake.input["selected_months"])
-format = load_json(snakemake.input["format"])
+styles = load_json(snakemake.input["styles"])
+labels = load_json(snakemake.input["labels"])
 
 result = {}
 
-for name, records in base.items():
-    result[name] = format.get(name, dict())
-    result[name].update({
-        "data": {
-            "s0": format_records(records)
-        }
-    })
-    
-for name, records in normalized.items():
-    name_normalized = f"{name}{NORMALIZED_SUFFIX_NAME}"
-    result[name_normalized] = format.get(name_normalized, dict())
-    result[name_normalized].update({
-        "data": {
-            "s0": format_records(records)
-        }
-    })
-    
-for name, records in selected_months.items():
-    name_selected_months = f"{name}{SELECTED_MONTHS_SUFFIX_NAME}"
-    result[name_selected_months] = format.get(name_selected_months, dict())
-    result[name_selected_months].update({
-        "data": {
-            f"s{int(key):02}": format_records_selected_months(value)
-            for key, value in records.items()
-        }
-    })
-    
+for name in base:
+    result[name] = {
+        "data": {},
+        "styles": {},
+        "labels": {},
+    }
+    base_style = styles.get(name, dict())
+    base_label = labels.get(name, "")
+
+    result[name]["data"]["base"] = format_records(base[name])
+    result[name]["styles"]["base"] = base_style
+    result[name]["labels"]["base"] = base_label
+
+    result[name]["data"]["normalized"] = format_records(normalized[name])
+    result[name]["styles"]["normalized"] = base_style | styles.get("normalized_update", dict())
+    result[name]["labels"]["normalized"] = base_label + labels.get("normalized_suffix", "")
+
+    for month in range(1, 12 + 1):
+        if str(month) in selected_months[name]:
+            records = selected_months[name][str(month)]
+        else:
+            records = []
+        
+        key = f"month{int(month):02}"
+        result[name]["data"][key] = format_records_selected_months(records)
+        result[name]["styles"][key] = base_style | styles.get(f"{key}_update", dict())
+        result[name]["labels"][key] = base_label + labels.get(f"{key}_suffix", "")
 
 save_pretty_json(snakemake.output[0], result)

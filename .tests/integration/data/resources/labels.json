@@ -1,0 +1,20 @@
+{
+    "normalized_suffix": " - normalizace",
+    "month01_suffix": " - leden",
+    "month02_suffix": " - únor",
+    "month03_suffix": " - březen",
+    "month04_suffix": " - duben",
+    "month05_suffix": " - květen",
+    "month06_suffix": " - červen",
+    "month07_suffix": " - červenec",
+    "month08_suffix": " - srpen",
+    "month09_suffix": " - září",
+    "month10_suffix": " - říjen",
+    "month11_suffix": " - listopad",
+    "month12_suffix": " - prosinec",
+    
+    "pocet_nehod": "Po\\u010det nehod",
+    "pocet_usmrcenych": "Po\\u010det usmrcen\\u00fdch",
+    "tezce_zranenych_osob": "T\\u011b\\u017ece zran\\u011bn\\u00fdch osob",
+    "lehce_zranenych_osob": "Lehce zran\\u011bn\\u00fdch osob"
+}

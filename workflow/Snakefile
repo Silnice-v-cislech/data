@@ -118,7 +118,8 @@ rule compose_monthly_time_series:
         base="temp/monthly_time_series",
         normalized="temp/normalized_monthly_time_series",
         selected_months="temp/selected_months_monthly_time_series",
-        format="resources/format.json",
+        styles="resources/styles.json",
+        labels="resources/labels.json",
     output:
         "results/monthly_time_series.json"
     log:
