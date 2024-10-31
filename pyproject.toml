@@ -28,6 +28,7 @@ dependencies = [
   "orjson>=3.10",
   "pandas>=2.2.3",
   "pyarrow>=17.0.0",
+  "lxml>=5.3.0",
   "rarfile>=4.2",
   "snakemake>=8.24.1",
 ]
@@ -36,6 +37,14 @@ dependencies = [
 Documentation = "https://github.com/Silnice-v-cislech/data/blob/main/README.md"
 Issues = "https://github.com/Silnice-v-cislech/data/issues"
 Source = "https://github.com/Silnice-v-cislech/data"
+
+[tool.hatch.envs.ipython]
+extra-dependencies = [
+  "ipython",
+  "ipdb",
+]
+[tool.hatch.envs.ipython.scripts]
+run = "ipython"
 
 [tool.hatch.envs.types]
 extra-dependencies = [
