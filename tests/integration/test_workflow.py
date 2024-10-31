@@ -16,8 +16,8 @@ def test_workflow():
 
     with TemporaryDirectory() as tmpdir:
         workdir = Path(tmpdir) / "workdir"
-        resources_path = PurePosixPath(".tests/integration/data") / RESOURCES_DIR
-        expected_path = PurePosixPath(".tests/integration/expected")
+        resources_path = PurePosixPath("tests/integration/data") / RESOURCES_DIR
+        expected_path = PurePosixPath("tests/integration/expected")
 
         # Copy data to the temporary workdir.
         shutil.copytree(resources_path.parent, workdir)
