@@ -38,8 +38,8 @@ Documentation = "https://github.com/Silnice-v-cislech/data/blob/main/README.md"
 Issues = "https://github.com/Silnice-v-cislech/data/issues"
 Source = "https://github.com/Silnice-v-cislech/data"
 
-[tool.hatch.metadata]
-allow-direct-references = true
+[tool.hatch.build.targets.wheel]
+packages = ["workflow"]
 
 [tool.hatch.envs.ipython]
 extra-dependencies = [
