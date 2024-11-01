@@ -56,6 +56,9 @@ disable_error_code = "name-defined"  # Snakemake is not defined
 line-length = 88
 target-version = ['py312']
 
+[tool.isort]
+profile = "black"
+
 [tool.hatch.envs.conventions]
 extra-dependencies = [
   "mypy>=1.13.0",
@@ -66,6 +69,7 @@ extra-dependencies = [
 types = "mypy --install-types --non-interactive {args:workflow/scripts}"
 format = "black workflow/scripts tests"
 imports = "isort workflow/scripts tests"
+check = "black --check workflow/scripts tests && isort --check workflow/scripts tests && mypy --install-types --non-interactive {args:workflow/scripts}"
 
 [tool.hatch.envs.tests]
 extra-dependencies = [
