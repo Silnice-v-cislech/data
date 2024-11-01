@@ -1,5 +1,3 @@
-import io
-
 import pandas as pd
 import rarfile  # type: ignore
 
@@ -17,7 +15,7 @@ with rarfile.RarFile(archive) as rf:
 
     for input_file, output_file in files.items():
         try:
-            df = pd.read_html(io.BytesIO(rf.read(input_file)))[0]
+            df = pd.read_html(rf.open(input_file))[0]
         except Exception as e:
             raise type(e)(f"While processing {archive}: {input_file}") from e
 
