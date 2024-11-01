@@ -38,6 +38,9 @@ Documentation = "https://github.com/Silnice-v-cislech/data/blob/main/README.md"
 Issues = "https://github.com/Silnice-v-cislech/data/issues"
 Source = "https://github.com/Silnice-v-cislech/data"
 
+[tool.hatch.metadata]
+allow-direct-references = true
+
 [tool.hatch.envs.ipython]
 extra-dependencies = [
   "ipython",
@@ -79,3 +82,5 @@ extra-dependencies = [
 all = "pytest tests/"
 integration = "pytest tests/integration/"
 unit = "pytest tests/unit/"
+[[tool.hatch.envs.test.matrix]]
+python = ["3.8", "3.9", "3.10", "3.11", "3.12"]
