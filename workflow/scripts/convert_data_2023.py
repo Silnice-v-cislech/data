@@ -1,5 +1,5 @@
 import io
-import rarfile
+import rarfile  # type: ignore
 import pandas as pd
 
 archive = snakemake.input[0]
@@ -16,7 +16,7 @@ with rarfile.RarFile(archive) as rf:
 
     for input_file, output_file in files.items():
         try:
-            df = pd.read_html(io.BytesIO(rf.read(input_file)))[0]
+            df = pd.read_html(io.StringIO(rf.read(input_file)))[0]
         except Exception as e:
             raise type(e)(f"While processing {archive}: {input_file}") from e
         

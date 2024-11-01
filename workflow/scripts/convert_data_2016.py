@@ -1,5 +1,5 @@
 import io
-import rarfile
+import rarfile  # type: ignore
 import pandas as pd
 
 archive = snakemake.input[0]
@@ -94,7 +94,7 @@ nehody_codes = [
     "t",
     "p5a",
 ]
-nehody_dtypes = {
+nehody_dtypes: dict[str, str | type[str]] = {
     "p1": str,
     "p36": "Int32",
     "p37": "Int32",
@@ -168,7 +168,7 @@ chodci_codes = [
     "p31",
     "p32",
 ]
-chodci_dtypes = {
+chodci_dtypes: dict[str, str | type[str]] = {
     "p1": str,
     "p29": "Int32",
     "p30": "Int32",

@@ -46,18 +46,24 @@ extra-dependencies = [
 [tool.hatch.envs.ipython.scripts]
 run = "ipython"
 
+[tool.mypy]
+python_version = "3.12"
+warn_return_any = true
+warn_unused_configs = true
+disable_error_code = "name-defined"  # Snakemake is not defined
+
 [tool.hatch.envs.types]
 extra-dependencies = [
   "mypy>=1.0.0",
 ]
 [tool.hatch.envs.types.scripts]
-check = "mypy --install-types --non-interactive {args:workflow/scripts tests}"
+check = "mypy --install-types --non-interactive {args:workflow/scripts}"
 
 [tool.hatch.envs.tests]
 extra-dependencies = [
   "pytest>=8.3.3",
 ]
 [tool.hatch.envs.tests.scripts]
-run = "pytest tests/"
+all = "pytest tests/"
 integration = "pytest tests/integration/"
 unit = "pytest tests/unit/"

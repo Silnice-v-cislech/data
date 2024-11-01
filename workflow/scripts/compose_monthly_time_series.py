@@ -1,4 +1,5 @@
-from utils import load_json, save_pretty_json
+from typing import Any
+from workflow.scripts.utils import load_json, save_pretty_json
 
 def format_records(series):
     return {f"{year}-{month:02}": value for year, month, value in series}
@@ -16,7 +17,7 @@ selected_months = load_json(snakemake.input["selected_months"])
 styles = load_json(snakemake.input["styles"])
 labels = load_json(snakemake.input["labels"])
 
-result = {}
+result: dict[str, dict[str, dict[str, Any]]] = {}
 
 for name in base:
     result[name] = {
