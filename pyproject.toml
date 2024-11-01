@@ -16,9 +16,6 @@ authors = [
 classifiers = [
   "Development Status :: 4 - Beta",
   "Programming Language :: Python",
-  "Programming Language :: Python :: 3.8",
-  "Programming Language :: Python :: 3.9",
-  "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
   "Programming Language :: Python :: Implementation :: CPython",
@@ -30,7 +27,7 @@ dependencies = [
   "pyarrow>=17.0.0",
   "lxml>=5.3.0",
   "rarfile>=4.2",
-  "snakemake>=8.24.1",
+  "snakemake>=8.25",
 ]
 
 [project.urls]
@@ -83,4 +80,4 @@ all = "pytest tests/"
 integration = "pytest tests/integration/"
 unit = "pytest tests/unit/"
 [[tool.hatch.envs.test.matrix]]
-python = ["3.8", "3.9", "3.10", "3.11", "3.12"]
+python = ["3.11", "3.12"]
