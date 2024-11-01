@@ -1,13 +1,14 @@
 import os
-import sys
-
-import subprocess as sp
-from tempfile import TemporaryDirectory
 import shutil
+import subprocess as sp
+import sys
 from pathlib import Path, PurePosixPath
+from tempfile import TemporaryDirectory
+
 import pandas as pd
 
 sys.path.insert(0, os.path.dirname(__file__))
+
 
 def test_workflow():
 
@@ -20,31 +21,37 @@ def test_workflow():
         shutil.copytree(data_path, workdir)
 
         # Run the test job.
-        sp.check_output([
-            "python",
-            "-m",
-            "snakemake", 
-            "resources/2016/chodci.feather",
-            "resources/2016/nehody.feather",
-            "resources/2023/chodci.feather",
-            "resources/2023/nehody.feather",
-            "resources/2023/gps.feather",
-            "resources/2023/nasledky.feather",
-            "resources/2023/vozidla.feather",
-            "-j1",
-            "--target-files-omit-workdir-adjustment",
-    
-            "--directory",
-            workdir,
-        ])
+        sp.check_output(
+            [
+                "python",
+                "-m",
+                "snakemake",
+                "resources/2016/chodci.feather",
+                "resources/2016/nehody.feather",
+                "resources/2023/chodci.feather",
+                "resources/2023/nehody.feather",
+                "resources/2023/gps.feather",
+                "resources/2023/nasledky.feather",
+                "resources/2023/vozidla.feather",
+                "-j1",
+                "--target-files-omit-workdir-adjustment",
+                "--directory",
+                workdir,
+            ]
+        )
 
         # Check results.
         for path in [
-            "2016/nehody.feather", "2016/chodci.feather", 
-            "2023/nehody.feather", "2023/vozidla.feather", "2023/nasledky.feather", "2023/chodci.feather", "2023/gps.feather",
+            "2016/nehody.feather",
+            "2016/chodci.feather",
+            "2023/nehody.feather",
+            "2023/vozidla.feather",
+            "2023/nasledky.feather",
+            "2023/chodci.feather",
+            "2023/gps.feather",
         ]:
             assert (workdir / "resources" / path).is_file()
-            
+
             result = pd.read_feather(workdir / "resources" / path)
             expected = pd.read_feather(expected_path / path)
 

@@ -1,6 +1,7 @@
 import io
-import rarfile  # type: ignore
+
 import pandas as pd
+import rarfile  # type: ignore
 
 archive = snakemake.input[0]
 

@@ -1,16 +1,17 @@
 import os
-import sys
-
-import subprocess as sp
-from tempfile import TemporaryDirectory
 import shutil
-from pathlib import Path, PurePosixPath
-import pandas as pd
+import subprocess as sp
+import sys
 from itertools import chain
+from pathlib import Path, PurePosixPath
+from tempfile import TemporaryDirectory
+
+import pandas as pd
 
 sys.path.insert(0, os.path.dirname(__file__))
 
 RESOURCES_DIR = "resources"
+
 
 def test_workflow():
 
@@ -27,34 +28,59 @@ def test_workflow():
             2016: {
                 "nehody": {
                     "p1": [0, 1],
-                    "p2a": ["2016-01-01", "2016-02-01"], 
-                    "p13a": [2, 3], 
-                    "p13b": [4, 5], 
+                    "p2a": ["2016-01-01", "2016-02-01"],
+                    "p13a": [2, 3],
+                    "p13b": [4, 5],
                     "p13c": [10, 15],
                 },
                 "chodci": {},
             },
-            2017: {"nehody": {"p2a": [], "p13a": [], "p13b": [], "p13c": []}, "chodci": {}},
-            2018: {"nehody": {"p2a": [], "p13a": [], "p13b": [], "p13c": []}, "chodci": {}},
-            2019: {"nehody": {"p2a": [], "p13a": [], "p13b": [], "p13c": []}, "chodci": {}},
-            2020: {"nehody": {"p2a": [], "p13a": [], "p13b": [], "p13c": []}, "chodci": {}},
-            2021: {"nehody": {"p2a": [], "p13a": [], "p13b": [], "p13c": []}, "chodci": {}},
-            2022: {"nehody": {"p2a": [], "p13a": [], "p13b": [], "p13c": []}, "chodci": {}},
+            2017: {
+                "nehody": {"p2a": [], "p13a": [], "p13b": [], "p13c": []},
+                "chodci": {},
+            },
+            2018: {
+                "nehody": {"p2a": [], "p13a": [], "p13b": [], "p13c": []},
+                "chodci": {},
+            },
+            2019: {
+                "nehody": {"p2a": [], "p13a": [], "p13b": [], "p13c": []},
+                "chodci": {},
+            },
+            2020: {
+                "nehody": {"p2a": [], "p13a": [], "p13b": [], "p13c": []},
+                "chodci": {},
+            },
+            2021: {
+                "nehody": {"p2a": [], "p13a": [], "p13b": [], "p13c": []},
+                "chodci": {},
+            },
+            2022: {
+                "nehody": {"p2a": [], "p13a": [], "p13b": [], "p13c": []},
+                "chodci": {},
+            },
         }
         data_2023_format = {
             2023: {
                 "nehody": {
                     "p1": [0, 1],
-                    "p2a": ["01.01.2023", "02.01.2023"], 
-                    "p13a": [3, 5], 
-                    "p13b": [2, 3], 
-                    "p13c": [12, 13],},
+                    "p2a": ["01.01.2023", "02.01.2023"],
+                    "p13a": [3, 5],
+                    "p13b": [2, 3],
+                    "p13c": [12, 13],
+                },
                 "chodci": {},
                 "nasledky": {},
                 "vozidla": {},
                 "gps": {},
             },
-            2024: {"nehody": {"p2a": [], "p13a": [], "p13b": [], "p13c": []}, "chodci": {}, "nasledky": {}, "vozidla": {}, "gps": {}},
+            2024: {
+                "nehody": {"p2a": [], "p13a": [], "p13b": [], "p13c": []},
+                "chodci": {},
+                "nasledky": {},
+                "vozidla": {},
+                "gps": {},
+            },
         }
 
         for year, files in chain(data_2016_format.items(), data_2023_format.items()):
@@ -65,23 +91,24 @@ def test_workflow():
                 df.to_feather(path)
 
         # Run the test job.
-        sp.check_output([
-            "python",
-            "-m",
-            "snakemake", 
-            "results/monthly_time_series.json",
-            "-j1",
-            "--target-files-omit-workdir-adjustment",
-    
-            "--directory",
-            workdir,
-        ])
+        sp.check_output(
+            [
+                "python",
+                "-m",
+                "snakemake",
+                "results/monthly_time_series.json",
+                "-j1",
+                "--target-files-omit-workdir-adjustment",
+                "--directory",
+                workdir,
+            ]
+        )
 
         # Check results.
         with open(workdir / "results" / "monthly_time_series.json", "r") as f:
-            result =  f.read()
+            result = f.read()
 
         with open(expected_path / "monthly_time_series.json", "r") as f:
-            expected =  f.read()
-        
+            expected = f.read()
+
         assert result == expected

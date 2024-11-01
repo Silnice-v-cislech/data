@@ -1,6 +1,12 @@
 import pandas as pd
+
+from workflow.scripts.monthly_time_series_common import (
+    accident_count,
+    death_count,
+    light_injury_count,
+    severe_injury_count,
+)
 from workflow.scripts.utils import save_json
-from workflow.scripts.monthly_time_series_common import accident_count, death_count, severe_injury_count, light_injury_count
 
 series_blueprint = {
     "pocet_nehod": accident_count,
@@ -9,7 +15,9 @@ series_blueprint = {
     "lehce_zranenych_osob": light_injury_count,
 }
 
-calculated_series: dict[str, list[tuple[int, int, int|float]]] = {key: [] for key in series_blueprint}
+calculated_series: dict[str, list[tuple[int, int, int | float]]] = {
+    key: [] for key in series_blueprint
+}
 
 accidents = pd.read_feather(snakemake.input["accidents"])
 pedestrians = pd.read_feather(snakemake.input["pedestrians"])
