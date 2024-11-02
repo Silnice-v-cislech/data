@@ -12,20 +12,24 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
           python-version: |
             3.11
             3.12
             3.13
-          cache: 'pip' # caching pip dependencies
+      
       - name: Install Hatch
-        run: pipx install hatch
+        run: pip install hatch
+
+      - name: Display Python version
+        run: python -c "import sys; print(sys.version)"
+
       - name: Run tests
-        run: hatch -vvv run tests:all
+        run: hatch run tests:all
 
-
-  build:
+  conventions:
     runs-on: ubuntu-latest
 
     steps:
@@ -45,4 +49,4 @@ jobs:
         run: python -c "import sys; print(sys.version)"
 
       - name: Run tests
-        run: hatch -vvv run tests:all
+        run: hatch run conventions:check
