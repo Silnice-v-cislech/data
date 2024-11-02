@@ -9,44 +9,14 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v4
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: |
-            3.11
-            3.12
-            3.13
-      
-      - name: Install Hatch
-        run: pip install hatch
-
-      - name: Display Python version
-        run: python -c "import sys; print(sys.version)"
-
+      - uses: "./.github/shared/setup"
       - name: Run tests
         run: hatch run tests:all
 
   conventions:
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v4
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: |
-            3.11
-            3.12
-            3.13
-      
-      - name: Install Hatch
-        run: pip install hatch
-
-      - name: Display Python version
-        run: python -c "import sys; print(sys.version)"
-
-      - name: Run tests
+      - uses: "./.github/shared/setup"
+      - name: Run conventions
         run: hatch run conventions:check
