@@ -1,0 +1,130 @@
+YEARS_2016_FORMAT = [2016, 2017, 2018, 2019, 2020, 2021, 2022]
+YEARS_2023_FORMAT = [2023, 2024]
+YEARS = YEARS_2016_FORMAT + YEARS_2023_FORMAT
+WILDCARD_CONSTRAINTS_2016_FORMAT = "|".join(str(year) for year in YEARS_2016_FORMAT)
+WILDCARD_CONSTRAINTS_2023_FORMAT = "|".join(str(year) for year in YEARS_2023_FORMAT)
+
+rule all:
+    input:
+        "results/monthly_time_series.json"
+
+rule convert_data_2016:
+    input:
+        "data/{year}/archive.rar"
+    output:
+        accidents="resources/{year}/nehody.feather",
+        pedestrians="resources/{year}/chodci.feather"
+    wildcard_constraints:
+        year=WILDCARD_CONSTRAINTS_2016_FORMAT
+    log:
+        "logs/convert_data_{year}.log"
+    conda:
+        "envs/rarfile.yaml"
+    script:
+        "scripts/convert_data_2016.py"
+
+
+rule convert_data_2023:
+    input:
+        "data/{year}/archive.rar"
+    output:
+        accidents="resources/{year}/nehody.feather",
+        vehicles="resources/{year}/vozidla.feather",
+        effects="resources/{year}/nasledky.feather",
+        pedestrians="resources/{year}/chodci.feather",
+        gps="resources/{year}/gps.feather"
+    wildcard_constraints:
+        year=WILDCARD_CONSTRAINTS_2023_FORMAT
+    log:
+        "logs/convert_data_{year}.log"
+    conda:
+        "envs/rarfile.yaml"
+    script:
+        "scripts/convert_data_2023.py"
+
+
+rule monthly_time_series_2016:
+    input:
+        accidents="resources/{year}/nehody.feather",
+        pedestrians="resources/{year}/chodci.feather"
+    output:
+        temp("temp/{year}/monthly_time_series")
+    wildcard_constraints:
+        year=WILDCARD_CONSTRAINTS_2016_FORMAT
+    log:
+        "logs/monthly_time_series_{year}.log"
+    conda:
+        "envs/pandas.yaml"
+    script:
+        "scripts/monthly_time_series_2016.py"
+
+
+rule monthly_time_series_2023:
+    input:
+        accidents="resources/{year}/nehody.feather",
+        vehicles="resources/{year}/vozidla.feather",
+        effects="resources/{year}/nasledky.feather",
+        pedestrians="resources/{year}/chodci.feather",
+        gps="resources/{year}/gps.feather"
+    output:
+        temp("temp/{year}/monthly_time_series")
+    wildcard_constraints:
+        year=WILDCARD_CONSTRAINTS_2023_FORMAT
+    log:
+        "logs/monthly_time_series_{year}.log"
+    conda:
+        "envs/pandas.yaml"
+    script:
+        "scripts/monthly_time_series_2023.py"
+
+rule merge_monthly_time_series:
+    input:
+        expand("temp/{year}/monthly_time_series", year=YEARS)
+    output:
+        temp("temp/monthly_time_series")
+    log:
+        "logs/merge_monthly_time_series.log"
+    conda:
+        "envs/json.yaml"
+    script:
+        "scripts/merge_monthly_time_series.py"
+
+rule normalize_monthly_time_series:
+    input:
+        "temp/monthly_time_series"
+    output:
+        temp("temp/normalized_monthly_time_series")
+    log:
+        "logs/normalize_monthly_time_series.log"
+    conda:
+        "envs/json.yaml"
+    script:
+        "scripts/normalize_monthly_time_series.py"
+
+rule select_months_from_monthly_time_series:
+    input:
+        "temp/monthly_time_series"
+    output:
+        temp("temp/selected_months_monthly_time_series")
+    log:
+        "logs/select_months_from_monthly_time_series.log"
+    conda:
+        "envs/json.yaml"
+    script:
+        "scripts/select_months_from_monthly_time_series.py"
+
+rule compose_monthly_time_series:
+    input:
+        base="temp/monthly_time_series",
+        normalized="temp/normalized_monthly_time_series",
+        selected_months="temp/selected_months_monthly_time_series",
+        styles="resources/styles.json",
+        labels="resources/labels.json",
+    output:
+        "results/monthly_time_series.json"
+    log:
+        "logs/compose_monthly_time_series.log"
+    conda:
+        "envs/json.yaml"
+    script:
+        "scripts/compose_monthly_time_series.py"
