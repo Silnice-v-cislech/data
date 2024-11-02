@@ -13,7 +13,9 @@ runs:
           3.13
     
     - name: Install Hatch
+      shell: bash
       run: pip install hatch
 
     - name: Display Python version
+      shell: bash
       run: python -c "import sys; print(sys.version)"
