@@ -10,13 +10,13 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: "./.github/shared/setup"
+      - uses: ./.github/actions/setup
       - name: Run tests
         run: hatch run tests:all
 
   conventions:
     runs-on: ubuntu-latest
     steps:
-      - uses: "./.github/shared/setup"
+      - uses: ./.github/actions/setup
       - name: Run conventions
         run: hatch run conventions:check
