@@ -39,9 +39,7 @@ jobs:
             3.13
       
       - name: Install Hatch
-        uses: threeal/pipx-install-action@v2.0.0
-        with:
-          packages: hatch
+        run: pip install hatch
 
       - name: Display Python version
         run: python -c "import sys; print(sys.version)"
