@@ -1,12 +1,11 @@
 import pandas as pd
-
-from workflow.scripts.monthly_time_series_common import (
+from monthly_time_series_common import (
     accident_count,
     death_count,
     light_injury_count,
     severe_injury_count,
 )
-from workflow.scripts.utils import save_json
+from utils import save_json
 
 series_blueprint = {
     "pocet_nehod": accident_count,

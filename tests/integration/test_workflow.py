@@ -96,7 +96,6 @@ def test_workflow():
                 "python",
                 "-m",
                 "snakemake",
-                "results/monthly_time_series.json",
                 "-j1",
                 "--target-files-omit-workdir-adjustment",
                 "--directory",
@@ -109,6 +108,14 @@ def test_workflow():
             result = f.read()
 
         with open(expected_path / "monthly_time_series.json", "r") as f:
+            expected = f.read()
+
+        assert result == expected
+
+        with open(workdir / "results" / "formatted_monthly_time_series.json", "r") as f:
+            result = f.read()
+
+        with open(expected_path / "formatted_monthly_time_series.json", "r") as f:
             expected = f.read()
 
         assert result == expected

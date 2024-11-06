@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "silnice-v-cislech-data"
 description = 'Workflow to export time series from Czech Police crash data.'
-version = "0"
+version = "0.0.1"
 readme = "README.md"
 requires-python = ">=3.8"
 license = "Apache-2.0"
@@ -51,7 +51,10 @@ run = "ipython"
 python_version = "3.12"
 warn_return_any = true
 warn_unused_configs = true
-disable_error_code = "name-defined"  # Snakemake is not defined
+disable_error_code = [
+  "name-defined",  # Snakemake is not defined
+  "import-not-found"  # imports in workflow scripts are not followed by mypy
+]
 
 [tool.black]
 line-length = 88
