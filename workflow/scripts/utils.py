@@ -1,6 +1,11 @@
 import orjson
 
 
+def load_text_file(filename):
+    with open(filename, "r") as f:
+        return f.read().strip()
+
+
 def load_json(filename):
     with open(filename, "br") as f:
         return orjson.loads(f.read())

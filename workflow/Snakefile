@@ -6,7 +6,8 @@ WILDCARD_CONSTRAINTS_2023_FORMAT = "|".join(str(year) for year in YEARS_2023_FOR
 
 rule all:
     input:
-        "results/monthly_time_series.json"
+        "results/monthly_time_series.json",
+        "results/formatted_monthly_time_series.json"
 
 rule convert_data_2016:
     input:
@@ -120,11 +121,24 @@ rule compose_monthly_time_series:
         selected_months="temp/selected_months_monthly_time_series",
         styles="resources/styles.json",
         labels="resources/labels.json",
+        source="data/source.md",
     output:
-        "results/monthly_time_series.json"
+        "results/formatted_monthly_time_series.json"
     log:
         "logs/compose_monthly_time_series.log"
     conda:
         "envs/json.yaml"
     script:
         "scripts/compose_monthly_time_series.py"
+
+rule strip_format_from_monthly_time_series:
+    input:
+        "results/formatted_monthly_time_series.json"
+    output:
+        "results/monthly_time_series.json"
+    log:
+        "logs/strip_format_from_monthly_time_series.log"
+    conda:
+        "envs/json.yaml"
+    script:
+        "scripts/strip_format_from_monthly_time_series.py"

@@ -1,6 +1,6 @@
 from typing import Any
 
-from workflow.scripts.utils import load_json, save_pretty_json
+from utils import load_json, load_text_file, save_pretty_json
 
 
 def format_records(series):
@@ -20,6 +20,7 @@ normalized = load_json(snakemake.input["normalized"])
 selected_months = load_json(snakemake.input["selected_months"])
 styles = load_json(snakemake.input["styles"])
 labels = load_json(snakemake.input["labels"])
+source = load_text_file(snakemake.input["source"])
 
 result: dict[str, dict[str, dict[str, Any]]] = {}
 
@@ -54,5 +55,9 @@ for name in base:
         result[name]["data"][key] = format_records_selected_months(records)
         result[name]["styles"][key] = base_style | styles.get(f"{key}_update", dict())
         result[name]["labels"][key] = base_label + labels.get(f"{key}_suffix", "")
+
+result["meta"] = {
+    "source": source,
+}
 
 save_pretty_json(snakemake.output[0], result)

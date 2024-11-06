@@ -1,6 +1,6 @@
 from calendar import monthrange
 
-from workflow.scripts.utils import load_json, save_json
+from utils import load_json, save_json
 
 data = load_json(snakemake.input[0])
 

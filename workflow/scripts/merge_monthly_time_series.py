@@ -1,6 +1,6 @@
 from collections import defaultdict
 
-from workflow.scripts.utils import load_json, save_json
+from utils import load_json, save_json
 
 result = defaultdict(list)
 
