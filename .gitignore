@@ -5,6 +5,9 @@ results/*
 resources/*
 .snakemake/*
 
+!resources/labels.json
+!results/monthly_time_series.json
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

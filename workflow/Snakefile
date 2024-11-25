@@ -90,6 +90,52 @@ rule merge_monthly_time_series:
     script:
         "scripts/merge_monthly_time_series.py"
 
+rule category_monthly_time_series_2016:
+    input:
+        accidents="resources/{year}/nehody.feather",
+        pedestrians="resources/{year}/chodci.feather"
+    output:
+        temp("temp/{year}/category_monthly_time_series")
+    wildcard_constraints:
+        year=WILDCARD_CONSTRAINTS_2016_FORMAT
+    log:
+        "logs/category_monthly_time_series_{year}.log"
+    conda:
+        "envs/pandas.yaml"
+    script:
+        "scripts/category_monthly_time_series_2016.py"
+
+
+rule category_monthly_time_series_2023:
+    input:
+        accidents="resources/{year}/nehody.feather",
+        vehicles="resources/{year}/vozidla.feather",
+        effects="resources/{year}/nasledky.feather",
+        pedestrians="resources/{year}/chodci.feather",
+        gps="resources/{year}/gps.feather"
+    output:
+        temp("temp/{year}/category_monthly_time_series")
+    wildcard_constraints:
+        year=WILDCARD_CONSTRAINTS_2023_FORMAT
+    log:
+        "logs/category_monthly_time_series_{year}.log"
+    conda:
+        "envs/pandas.yaml"
+    script:
+        "scripts/category_monthly_time_series_2023.py"
+
+rule merge_category_monthly_time_series:
+    input:
+        expand("temp/{year}/category_monthly_time_series", year=YEARS)
+    output:
+        temp("temp/category_monthly_time_series")
+    log:
+        "logs/merge_category_monthly_time_series.log"
+    conda:
+        "envs/json.yaml"
+    script:
+        "scripts/merge_category_monthly_time_series.py"
+
 rule normalize_monthly_time_series:
     input:
         "temp/monthly_time_series"
@@ -119,7 +165,7 @@ rule compose_monthly_time_series:
         base="temp/monthly_time_series",
         normalized="temp/normalized_monthly_time_series",
         selected_months="temp/selected_months_monthly_time_series",
-        styles="resources/styles.json",
+        categorized="temp/category_monthly_time_series",
         labels="resources/labels.json",
         source="data/source.md",
     output:
