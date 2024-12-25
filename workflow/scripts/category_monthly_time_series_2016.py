@@ -7,6 +7,8 @@ from category_monthly_time_series_common_metrics import (
     culprit_alcohol,
     moving_vehicle_crash_kind_counts,
     solid_obstacle_kind_counts,
+    main_accident_cause,
+    main_accident_cause_detailed,
 )
 from utils import save_json
 
@@ -16,6 +18,8 @@ category_series_blueprint = {
     "pocty_druhu_pevnych_prekazek": solid_obstacle_kind_counts,
     "zavineni_nehody": accident_cause,
     "alkohol_u_vinika": culprit_alcohol,
+    "hlavni_priciny_nehody": main_accident_cause,
+    "hlavni_priciny_nehody_podrobne": main_accident_cause_detailed,
 }
 
 calculated_series: dict[
