@@ -136,35 +136,9 @@ rule merge_category_monthly_time_series:
     script:
         "scripts/merge_category_monthly_time_series.py"
 
-rule normalize_monthly_time_series:
-    input:
-        "temp/monthly_time_series"
-    output:
-        temp("temp/normalized_monthly_time_series")
-    log:
-        "logs/normalize_monthly_time_series.log"
-    conda:
-        "envs/json.yaml"
-    script:
-        "scripts/normalize_monthly_time_series.py"
-
-rule select_months_from_monthly_time_series:
-    input:
-        "temp/monthly_time_series"
-    output:
-        temp("temp/selected_months_monthly_time_series")
-    log:
-        "logs/select_months_from_monthly_time_series.log"
-    conda:
-        "envs/json.yaml"
-    script:
-        "scripts/select_months_from_monthly_time_series.py"
-
 rule compose_monthly_time_series:
     input:
         base="temp/monthly_time_series",
-        normalized="temp/normalized_monthly_time_series",
-        selected_months="temp/selected_months_monthly_time_series",
         categorized="temp/category_monthly_time_series",
         labels="resources/labels.json",
         source="data/source.md",

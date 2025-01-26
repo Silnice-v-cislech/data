@@ -1,22 +1,10 @@
 {
-    "normalized_suffix": " - normalizace",
-    "month01_suffix": " - leden",
-    "month02_suffix": " - únor",
-    "month03_suffix": " - březen",
-    "month04_suffix": " - duben",
-    "month05_suffix": " - květen",
-    "month06_suffix": " - červen",
-    "month07_suffix": " - červenec",
-    "month08_suffix": " - srpen",
-    "month09_suffix": " - září",
-    "month10_suffix": " - říjen",
-    "month11_suffix": " - listopad",
-    "month12_suffix": " - prosinec",
-    
-    "pocet_nehod": "Počet nehod",
-    "pocet_usmrcenych": "Počet usmrcených",
-    "tezce_zranenych_osob": "Těžce zraněných osob",
-    "lehce_zranenych_osob": "Lehce zraněných osob",
+    "celkovy_pocet": {
+        "nehody": "Počet nehod",
+        "umrti": "Počet usmrcených",
+        "tezke_zraneni": "Těžce zraněných osob",
+        "lehke_zraneni": "Lehce zraněných osob"
+    },
     
     "pocty_druhu_nehod_0": "jiný druh nehody",
     "pocty_druhu_nehod_1": "srážka s jedoucím nekolejovým vozidlem",

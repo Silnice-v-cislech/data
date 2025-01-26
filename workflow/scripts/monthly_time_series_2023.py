@@ -1,21 +1,16 @@
+from collections import defaultdict
 import pandas as pd
-from monthly_time_series_common import (
-    accident_count,
-    death_count,
-    light_injury_count,
-    severe_injury_count,
-)
+from metrics.metric import Metric
+from metrics.groupings import all
+from metrics.aggregations import basic_aggregations
 from utils import save_json
 
 series_blueprint = {
-    "pocet_nehod": accident_count,
-    "pocet_usmrcenych": death_count,
-    "tezce_zranenych_osob": severe_injury_count,
-    "lehce_zranenych_osob": light_injury_count,
+    "celkovy_pocet": Metric([], all, basic_aggregations),
 }
 
-calculated_series: dict[str, list[tuple[int, int, int | float]]] = {
-    key: [] for key in series_blueprint
+calculated_series: dict[str, dict[str, list[tuple[int, int, int | float]]]] = {
+    key: defaultdict(list) for key in series_blueprint
 }
 
 accidents = pd.read_feather(snakemake.input["accidents"])
@@ -26,15 +21,16 @@ gps = pd.read_feather(snakemake.input["gps"])
 
 accidents["datetime"] = pd.to_datetime(accidents["p2a"], format="%d.%m.%Y")
 
-for series_name, series_function in series_blueprint.items():
-    result = series_function(
+for series_name, series_metric in series_blueprint.items():
+    result = series_metric.apply(
         accidents=accidents,
         vehicles=vehicles,
         effects=effects,
         pedestrians=pedestrians,
         gps=gps,
     )
-    for (year, month), value in result.items():
-        calculated_series[series_name].append((year, month, value))
+    for aggregation, data in result.items():
+        for (year, month), value in data.items():
+            calculated_series[series_name][aggregation].append((year, month, value))
 
 save_json(snakemake.output[0], calculated_series)
