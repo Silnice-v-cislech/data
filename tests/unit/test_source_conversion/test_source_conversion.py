@@ -14,8 +14,8 @@ def test_workflow():
 
     with TemporaryDirectory() as tmpdir:
         workdir = Path(tmpdir) / "workdir"
-        data_path = PurePosixPath("tests/unit/source_conversion/data")
-        expected_path = PurePosixPath("tests/unit/source_conversion/expected")
+        data_path = PurePosixPath("tests/unit/test_source_conversion/data")
+        expected_path = PurePosixPath("tests/unit/test_source_conversion/expected")
 
         # Copy data to the temporary workdir.
         shutil.copytree(data_path, workdir)

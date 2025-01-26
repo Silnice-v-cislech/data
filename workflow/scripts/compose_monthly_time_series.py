@@ -1,3 +1,4 @@
+from collections import defaultdict
 from typing import Any
 
 from utils import load_json, load_text_file, save_pretty_json
@@ -27,12 +28,16 @@ for name in base:
 
 for name, categories in categorized.items():
     result[name] = {
-        "data": {},
-        "labels": {},
+        "data": defaultdict(dict),
+        "labels": defaultdict(dict),
     }
-    for category, series in categories.items():
-        result[name]["data"][category] = format_records(series)
-        result[name]["labels"][category] = labels.get(f"{name}_{category}", "")
+
+    for aggregation, data in categories.items():
+        for category, series in data.items():
+            result[name]["data"][aggregation][category] = format_records(series)
+            result[name]["labels"][aggregation][category] = labels.get(
+                f"{name}_{category}", ""
+            )
 
 
 result["meta"] = {"source": source, "processed": datetime.now()}
