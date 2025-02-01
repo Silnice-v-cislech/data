@@ -1,34 +1,26 @@
 from collections import defaultdict
 
 import pandas as pd
-from metrics.aggregations import accident_count, basic_aggregations
-from metrics.groupings import (
-    accident_cause,
-    accident_kind,
-    culprit_alcohol,
-    main_accident_cause,
-    main_accident_cause_detailed,
-    moving_vehicle_crash_kind,
-    solid_obstacle_kind,
-)
+from metrics.aggregations import basic_aggregations
+from metrics.groupings import by_key, main_accident_cause
 from metrics.metric import Metric
 from utils import save_json
 
 category_series_blueprint = {
-    "druhy_nehod": Metric([], accident_kind, basic_aggregations),
+    "druhy_nehod": Metric([], by_key("p6"), basic_aggregations),
     "druhy_srazek_jedoucich_vozidel": Metric(
-        [], moving_vehicle_crash_kind, basic_aggregations
+        [], by_key("p7", neq=0), basic_aggregations
     ),
-    "druhy_pevnych_prekazek": Metric([], solid_obstacle_kind, basic_aggregations),
+    "druhy_pevnych_prekazek": Metric([], by_key("p8", neq=0), basic_aggregations),
     "zavineni_nehody": Metric(
         [],
-        accident_cause,
+        by_key("p10"),
         basic_aggregations,
         ensure_categories=[0, 1, 2, 3, 4, 5, 6, 7],
     ),
     "alkohol_u_vinika": Metric(
         [],
-        culprit_alcohol,
+        by_key("p11"),
         basic_aggregations,
         ensure_categories=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
     ),
@@ -40,7 +32,7 @@ category_series_blueprint = {
     ),
     "hlavni_priciny_nehody_podrobne": Metric(
         [],
-        main_accident_cause_detailed,
+        by_key("p12"),
         basic_aggregations,
         ensure_categories=[
             100,

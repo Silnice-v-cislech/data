@@ -7,7 +7,7 @@ from workflow.scripts.metrics.aggregations import (
     basic_aggregations,
     death_count,
 )
-from workflow.scripts.metrics.groupings import accident_kind, all
+from workflow.scripts.metrics.groupings import all, by_key
 from workflow.scripts.metrics.metric import Metric
 
 
@@ -37,7 +37,7 @@ def test_metric():
 def test_ensure_categories():
     metric = Metric(
         [],
-        accident_kind,
+        by_key("p6"),
         {"nehody": accident_count, "umrti": death_count},
         ensure_categories=[1, 2, 3, 4],
     )
