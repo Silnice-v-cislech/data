@@ -1,19 +1,16 @@
-from pandas.api.typing import DataFrameGroupBy
-
-
-def accident_count(groupby: DataFrameGroupBy):
+def accident_count(groupby):
     return groupby["datetime"].count()
 
 
-def death_count(groupby: DataFrameGroupBy):
+def death_count(groupby):
     return groupby["p13a"].sum().astype(int)
 
 
-def severe_injury_count(groupby: DataFrameGroupBy):
+def severe_injury_count(groupby):
     return groupby["p13b"].sum().astype(int)
 
 
-def light_injury_count(groupby: DataFrameGroupBy):
+def light_injury_count(groupby):
     return groupby["p13c"].sum().astype(int)
 
 

@@ -1,11 +1,13 @@
-import pytest
 from datetime import datetime
+
 import pandas as pd
+import pytest
+
 from workflow.scripts.metrics.aggregations import (
     accident_count,
     death_count,
-    severe_injury_count,
     light_injury_count,
+    severe_injury_count,
 )
 
 

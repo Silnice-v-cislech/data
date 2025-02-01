@@ -1,9 +1,8 @@
 from collections import defaultdict
+from datetime import datetime
 from typing import Any
 
 from utils import load_json, load_text_file, save_pretty_json
-
-from datetime import datetime
 
 
 def format_records(series):
@@ -15,7 +14,7 @@ labels = load_json(snakemake.input["labels"])
 categorized = load_json(snakemake.input["categorized"])
 source = load_text_file(snakemake.input["source"])
 
-result: dict[str, dict[str, dict[str, Any]]] = {}
+result: dict[str, dict[str, dict[str, Any]] | Any] = {}
 
 for name in base:
     result[name] = {
@@ -35,10 +34,9 @@ for name, categories in categorized.items():
     for aggregation, data in categories.items():
         for category, series in data.items():
             result[name]["data"][aggregation][category] = format_records(series)
-            result[name]["labels"][aggregation][category] = labels.get(
-                f"{name}_{category}", ""
+            result[name]["labels"][aggregation][category] = labels.get(name, {}).get(
+                category, ""
             )
-
 
 result["meta"] = {"source": source, "processed": datetime.now()}
 

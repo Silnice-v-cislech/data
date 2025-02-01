@@ -1,20 +1,19 @@
 from collections import defaultdict
 
-from metrics.metric import Metric
-from metrics.groupings import accident_kind
-from metrics.aggregations import basic_aggregations, accident_count
 import pandas as pd
+from metrics.aggregations import accident_count, basic_aggregations
 from metrics.groupings import (
     accident_cause,
     accident_kind,
+    animal_obstacle_kind,
     culprit_alcohol,
-    moving_vehicle_crash_kind,
-    solid_obstacle_kind,
+    culprit_drugs,
     main_accident_cause,
     main_accident_cause_detailed,
-    animal_obstacle_kind,
-    culprit_drugs,
+    moving_vehicle_crash_kind,
+    solid_obstacle_kind,
 )
+from metrics.metric import Metric
 from utils import save_json
 
 category_series_blueprint = {
@@ -22,9 +21,7 @@ category_series_blueprint = {
     "druhy_srazek_jedoucich_vozidel": Metric(
         [], moving_vehicle_crash_kind, basic_aggregations
     ),
-    "druhy_pevnych_prekazek": Metric(
-        [], solid_obstacle_kind, basic_aggregations
-    ),
+    "druhy_pevnych_prekazek": Metric([], solid_obstacle_kind, basic_aggregations),
     "zavineni_nehody": Metric(
         [],
         accident_cause,

@@ -2,7 +2,9 @@ from collections import defaultdict
 
 from utils import load_json, save_json
 
-result = defaultdict(lambda: defaultdict(list))
+result: dict[str, dict[int, list[tuple[int, int, int | float]]]] = defaultdict(
+    lambda: defaultdict(list)
+)
 
 for input_file in snakemake.input:
     content = load_json(input_file)

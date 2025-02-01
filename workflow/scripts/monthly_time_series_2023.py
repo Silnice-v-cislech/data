@@ -1,8 +1,9 @@
 from collections import defaultdict
+
 import pandas as pd
-from metrics.metric import Metric
-from metrics.groupings import all
 from metrics.aggregations import basic_aggregations
+from metrics.groupings import all
+from metrics.metric import Metric
 from utils import save_json
 
 series_blueprint = {

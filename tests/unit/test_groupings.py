@@ -1,5 +1,7 @@
-import pandas as pd
 from datetime import datetime
+
+import pandas as pd
+
 from workflow.scripts.metrics.groupings import all
 
 

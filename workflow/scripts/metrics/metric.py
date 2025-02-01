@@ -1,15 +1,14 @@
-from typing import Any, Optional, TypeAlias
-from numbers import Number
 from collections import ChainMap
-from dataclasses import dataclass
 from collections.abc import Callable
+from dataclasses import dataclass
+from numbers import Number
+from typing import Any, Optional, TypeAlias
+
 import pandas as pd
 
 filter: TypeAlias = Callable[[pd.DataFrame], dict[str, pd.DataFrame]]
-grouping: TypeAlias = Callable[[pd.DataFrame], pd.api.typing.DataFrameGroupBy]
-aggregation: TypeAlias = Callable[
-    [pd.api.typing.DataFrameGroupBy], list[tuple[tuple[int, int], Number]]
-]
+grouping: TypeAlias = Callable[[pd.DataFrame], Any]
+aggregation: TypeAlias = Callable[[Any], list[tuple[tuple[int, int], Number]]]
 
 
 @dataclass

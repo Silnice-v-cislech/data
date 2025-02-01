@@ -1,4 +1,5 @@
 import os
+import re
 import shutil
 import subprocess as sp
 import sys
@@ -135,6 +136,9 @@ def test_workflow():
         with open(expected_path / "monthly_time_series.json", "r") as f:
             expected = f.read()
 
+        # remove processed timestamp
+        result = re.sub(r"\"processed\": \".*?\"", '"processed": ""', result)
+
         assert result == expected
 
         with open(workdir / "results" / "formatted_monthly_time_series.json", "r") as f:
@@ -142,5 +146,8 @@ def test_workflow():
 
         with open(expected_path / "formatted_monthly_time_series.json", "r") as f:
             expected = f.read()
+
+        # remove processed timestamp
+        result = re.sub(r"\"processed\": \".*?\"", '"processed": ""', result)
 
         assert result == expected

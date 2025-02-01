@@ -1,8 +1,14 @@
 from datetime import datetime
+
 import pandas as pd
+
+from workflow.scripts.metrics.aggregations import (
+    accident_count,
+    basic_aggregations,
+    death_count,
+)
+from workflow.scripts.metrics.groupings import accident_kind, all
 from workflow.scripts.metrics.metric import Metric
-from workflow.scripts.metrics.aggregations import basic_aggregations, accident_count, death_count
-from workflow.scripts.metrics.groupings import all, accident_kind
 
 
 def test_metric():
@@ -29,7 +35,12 @@ def test_metric():
 
 
 def test_ensure_categories():
-    metric = Metric([], accident_kind, {"nehody": accident_count, "umrti": death_count}, ensure_categories=[1, 2, 3, 4])
+    metric = Metric(
+        [],
+        accident_kind,
+        {"nehody": accident_count, "umrti": death_count},
+        ensure_categories=[1, 2, 3, 4],
+    )
 
     result = metric.apply(
         accidents=pd.DataFrame(
