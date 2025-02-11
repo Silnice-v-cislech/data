@@ -2403,7 +2403,7 @@
       }
     }
   },
-  "pocty_druhu_zvere": {
+  "druhy_zvere": {
     "data": {
       "nehody": {
         "1": {
