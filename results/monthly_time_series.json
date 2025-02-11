@@ -50247,7 +50247,7 @@
       }
     }
   },
-  "pocty_druhu_zvere": {
+  "druhy_zvere": {
     "data": {
       "nehody": {
         "1": {
@@ -53497,6 +53497,6 @@
   },
   "meta": {
     "source": "Zdrojová data pochází od Policie ČR: https://www.policie.cz/clanek/statistika-nehodovosti-900835.aspx",
-    "processed": "2025-02-06T13:45:49.721309"
+    "processed": "2025-02-06T15:28:36.271781"
   }
 }

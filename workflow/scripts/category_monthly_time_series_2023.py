@@ -103,7 +103,7 @@ category_series_blueprint = {
             615,
         ],
     ),
-    "pocty_druhu_zvere": Metric(
+    "druhy_zvere": Metric(
         [],
         by_key("p8a", neq=0),
         basic_aggregations,
