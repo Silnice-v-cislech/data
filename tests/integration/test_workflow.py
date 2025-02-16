@@ -107,6 +107,7 @@ def test_workflow():
                 "gps": {},
             },
             2024: EMPTY_2023_FORMAT,
+            2025: EMPTY_2023_FORMAT,
         }
 
         for year, files in chain(data_2016_format.items(), data_2023_format.items()):
