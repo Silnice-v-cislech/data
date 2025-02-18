@@ -2,6 +2,8 @@ from collections import defaultdict
 
 import pandas as pd
 from metrics.aggregations import basic_aggregations
+from metrics.converters.appends_2023 import append_first_vehicle
+from metrics.converters.cause_filters import caused_by_motor_vehicle_driver
 from metrics.groupings import by_key, main_accident_cause
 from metrics.metric import Metric
 from utils import save_json
@@ -138,6 +140,11 @@ category_series_blueprint = {
         basic_aggregations,
         ensure_categories=[0, 1, 2, 3, 4, 5, 6, 7, 8],
     ),
+    "stari_vozidla_vinika": Metric(
+        [caused_by_motor_vehicle_driver, append_first_vehicle],
+        by_key("p47"),
+        basic_aggregations,
+    ),
 }
 
 calculated_series: dict[
@@ -150,8 +157,6 @@ vehicles = pd.read_feather(snakemake.input["vehicles"])
 effects = pd.read_feather(snakemake.input["effects"])
 pedestrians = pd.read_feather(snakemake.input["pedestrians"])
 gps = pd.read_feather(snakemake.input["gps"])
-
-accidents["datetime"] = pd.to_datetime(accidents["p2a"], format="%d.%m.%Y")
 
 for series_name, series_metric in category_series_blueprint.items():
     result = series_metric.apply(

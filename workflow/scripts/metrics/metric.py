@@ -6,7 +6,7 @@ from typing import Any, Optional, TypeAlias
 
 import pandas as pd
 
-filter: TypeAlias = Callable[[pd.DataFrame], dict[str, pd.DataFrame]]
+converter: TypeAlias = Callable[[pd.DataFrame], dict[str, pd.DataFrame]]
 grouping: TypeAlias = Callable[[pd.DataFrame], Any]
 aggregation: TypeAlias = Callable[[Any], list[tuple[tuple[int, int], Number]]]
 
@@ -15,7 +15,7 @@ aggregation: TypeAlias = Callable[[Any], list[tuple[tuple[int, int], Number]]]
 class Metric:
     """Processing steps for a metric."""
 
-    filters: list[filter]
+    converters: list[converter]
     grouping: grouping
     aggregations: dict[str, aggregation]
     ensure_categories: Optional[list[Any]] = None
@@ -31,8 +31,8 @@ class Metric:
 
     def apply(self, **kwargs):
         arguments = kwargs
-        for filter in self.filters:
-            result = filter(**arguments)
+        for converter in self.converters:
+            result = converter(**arguments)
             arguments = ChainMap(result, kwargs)
         grouped = self.grouping(**arguments)
         if self.ensure_categories is None:

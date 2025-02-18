@@ -44,10 +44,50 @@ rule convert_data_2023:
         "scripts/convert_data_2023.py"
 
 
-rule monthly_time_series_2016:
+rule adjust_data_2016:
     input:
         accidents="resources/{year}/nehody.feather",
         pedestrians="resources/{year}/chodci.feather"
+    output:
+        accidents=temp("temp/{year}/adjusted_nehody.feather"),
+        pedestrians=temp("temp/{year}/adjusted_chodci.feather")
+    wildcard_constraints:
+        year=WILDCARD_CONSTRAINTS_2016_FORMAT
+    log:
+        "logs/adjust_data_{year}.log"
+    conda:
+        "envs/pandas.yaml"
+    script:
+        "scripts/adjust_data_2016.py"
+
+
+rule adjust_data_2023:
+    input:
+        accidents="resources/{year}/nehody.feather",
+        vehicles="resources/{year}/vozidla.feather",
+        effects="resources/{year}/nasledky.feather",
+        pedestrians="resources/{year}/chodci.feather",
+        gps="resources/{year}/gps.feather"
+    output:
+        accidents=temp("temp/{year}/adjusted_nehody.feather"),
+        vehicles=temp("temp/{year}/adjusted_vozidla.feather"),
+        effects=temp("temp/{year}/adjusted_nasledky.feather"),
+        pedestrians=temp("temp/{year}/adjusted_chodci.feather"),
+        gps=temp("temp/{year}/adjusted_gps.feather")
+    wildcard_constraints:
+        year=WILDCARD_CONSTRAINTS_2023_FORMAT
+    log:
+        "logs/adjust_data_{year}.log"
+    conda:
+        "envs/pandas.yaml"
+    script:
+        "scripts/adjust_data_2023.py"
+
+
+rule monthly_time_series_2016:
+    input:
+        accidents="temp/{year}/adjusted_nehody.feather",
+        pedestrians="temp/{year}/adjusted_chodci.feather"
     output:
         temp("temp/{year}/monthly_time_series")
     wildcard_constraints:
@@ -62,11 +102,11 @@ rule monthly_time_series_2016:
 
 rule monthly_time_series_2023:
     input:
-        accidents="resources/{year}/nehody.feather",
-        vehicles="resources/{year}/vozidla.feather",
-        effects="resources/{year}/nasledky.feather",
-        pedestrians="resources/{year}/chodci.feather",
-        gps="resources/{year}/gps.feather"
+        accidents="temp/{year}/adjusted_nehody.feather",
+        vehicles="temp/{year}/adjusted_vozidla.feather",
+        effects="temp/{year}/adjusted_nasledky.feather",
+        pedestrians="temp/{year}/adjusted_chodci.feather",
+        gps="temp/{year}/adjusted_gps.feather"
     output:
         temp("temp/{year}/monthly_time_series")
     wildcard_constraints:
@@ -92,8 +132,8 @@ rule merge_monthly_time_series:
 
 rule category_monthly_time_series_2016:
     input:
-        accidents="resources/{year}/nehody.feather",
-        pedestrians="resources/{year}/chodci.feather"
+        accidents="temp/{year}/adjusted_nehody.feather",
+        pedestrians="temp/{year}/adjusted_chodci.feather"
     output:
         temp("temp/{year}/category_monthly_time_series")
     wildcard_constraints:
@@ -108,11 +148,11 @@ rule category_monthly_time_series_2016:
 
 rule category_monthly_time_series_2023:
     input:
-        accidents="resources/{year}/nehody.feather",
-        vehicles="resources/{year}/vozidla.feather",
-        effects="resources/{year}/nasledky.feather",
-        pedestrians="resources/{year}/chodci.feather",
-        gps="resources/{year}/gps.feather"
+        accidents="temp/{year}/adjusted_nehody.feather",
+        vehicles="temp/{year}/adjusted_vozidla.feather",
+        effects="temp/{year}/adjusted_nasledky.feather",
+        pedestrians="temp/{year}/adjusted_chodci.feather",
+        gps="temp/{year}/adjusted_gps.feather"
     output:
         temp("temp/{year}/category_monthly_time_series")
     wildcard_constraints:

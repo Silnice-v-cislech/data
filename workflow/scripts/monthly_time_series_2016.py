@@ -17,8 +17,6 @@ calculated_series: dict[str, dict[str, list[tuple[int, int, int | float]]]] = {
 accidents = pd.read_feather(snakemake.input["accidents"])
 pedestrians = pd.read_feather(snakemake.input["pedestrians"])
 
-accidents["datetime"] = pd.to_datetime(accidents["p2a"], format="%Y-%m-%d")
-
 for series_name, series_metric in series_blueprint.items():
     result = series_metric.apply(
         accidents=accidents,

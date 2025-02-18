@@ -7,6 +7,7 @@ from itertools import chain
 from pathlib import Path, PurePosixPath
 from tempfile import TemporaryDirectory
 
+import numpy as np
 import pandas as pd
 
 sys.path.insert(0, os.path.dirname(__file__))
@@ -26,6 +27,7 @@ def test_workflow():
 
         EMPTY_2016_FORMAT = {
             "nehody": {
+                "p1": [],
                 "p2a": [],
                 "p6": [],
                 "p7": [],
@@ -36,11 +38,13 @@ def test_workflow():
                 "p13a": [],
                 "p13b": [],
                 "p13c": [],
+                "p47": [],
             },
             "chodci": {},
         }
         EMPTY_2023_FORMAT = {
             "nehody": {
+                "p1": [],
                 "p2a": [],
                 "p6": [],
                 "p7": [],
@@ -56,7 +60,11 @@ def test_workflow():
             },
             "chodci": {},
             "nasledky": {},
-            "vozidla": {},
+            "vozidla": {
+                "p1": [],
+                "id_vozidla": [],
+                "p47": [],
+            },
             "gps": {},
         }
         # create input files
@@ -74,6 +82,7 @@ def test_workflow():
                     "p13a": [2, 3, 0],
                     "p13b": [4, 5, 0],
                     "p13c": [10, 15, 0],
+                    "p47": [22, 44, np.nan],
                 },
                 "chodci": {},
             },
@@ -87,23 +96,27 @@ def test_workflow():
         data_2023_format = {
             2023: {
                 "nehody": {
-                    "p1": [0, 1, 2],
-                    "p2a": ["01.01.2023", "02.01.2023", "02.02.2023"],
-                    "p6": [2, 2, 2],
-                    "p7": [3, 3, 3],
-                    "p8": [8, 8, 8],
-                    "p8a": [1, 1, 0],
-                    "p10": [7, 7, 6],
-                    "p11": [8, 8, 9],
-                    "p11a": [6, 6, 0],
-                    "p12": [501, 516, 100],
-                    "p13a": [3, 5, 0],
-                    "p13b": [2, 3, 0],
-                    "p13c": [12, 13, 0],
+                    "p1": [0, 1, 2, 3],
+                    "p2a": ["01.01.2023", "02.01.2023", "02.02.2023", "02.03.2023"],
+                    "p6": [2, 2, 2, 1],
+                    "p7": [3, 3, 3, 1],
+                    "p8": [8, 8, 8, 0],
+                    "p8a": [1, 1, 0, 0],
+                    "p10": [7, 7, 6, 1],
+                    "p11": [8, 8, 9, 0],
+                    "p11a": [6, 6, 0, 0],
+                    "p12": [501, 516, 100, 201],
+                    "p13a": [3, 5, 0, 7],
+                    "p13b": [2, 3, 0, 5],
+                    "p13c": [12, 13, 0, 17],
                 },
                 "chodci": {},
                 "nasledky": {},
-                "vozidla": {},
+                "vozidla": {
+                    "p1": [0, 1, 2, 3, 3, 3],
+                    "id_vozidla": [1, 1, 1, 1, 2, 3],
+                    "p47": [0, np.nan, None, np.nan, 34, 89],
+                },
                 "gps": {},
             },
             2024: EMPTY_2023_FORMAT,

@@ -19,5 +19,10 @@ def save_json(filename, data):
 def save_pretty_json(filename, data):
     with open(filename, "bw") as f:
         f.write(
-            orjson.dumps(data, option=orjson.OPT_NON_STR_KEYS | orjson.OPT_INDENT_2)
+            orjson.dumps(
+                data,
+                option=orjson.OPT_NON_STR_KEYS
+                | orjson.OPT_INDENT_2
+                | orjson.OPT_SORT_KEYS,
+            )
         )
