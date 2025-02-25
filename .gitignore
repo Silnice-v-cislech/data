@@ -4,6 +4,7 @@ temp/*
 results/*
 resources/*
 .snakemake/*
+tests/integration/temp_test_dir
 
 !resources/labels.json
 !results/monthly_time_series.json

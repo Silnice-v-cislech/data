@@ -1,3 +1,6 @@
+from datetime import datetime
+from typing import Any
+
 import orjson
 
 
@@ -26,3 +29,27 @@ def save_pretty_json(filename, data):
                 | orjson.OPT_SORT_KEYS,
             )
         )
+
+
+def zero_monthly_time_series(
+    start: datetime, end: datetime, value: Any = 0
+) -> dict[tuple[int, int], int]:
+    start_year = int(start.year)
+    start_month = int(start.month)
+    end_year = int(end.year)
+    end_month = int(end.month)
+
+    if start_year == end_year:
+        return {
+            (start_year, month): value for month in range(start_month, end_month + 1)
+        }
+
+    return (
+        {(start_year, month): value for month in range(start_month, 12 + 1)}
+        | {
+            (year, month): value
+            for year in range(start_year + 1, end_year)
+            for month in range(1, 12 + 1)
+        }
+        | {(end_year, month): value for month in range(1, end_month + 1)}
+    )
