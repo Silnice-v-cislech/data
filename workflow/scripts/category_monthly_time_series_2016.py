@@ -104,7 +104,7 @@ category_series_blueprint = {
             615,
         ],
     ),
-    "stari_vozidla_vinika": Metric(
+    "rok_vyroby_vozidla_vinika": Metric(
         [caused_by_motor_vehicle_driver], by_key("p47"), basic_aggregations
     ),
 }

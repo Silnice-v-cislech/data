@@ -140,7 +140,7 @@ category_series_blueprint = {
         basic_aggregations,
         ensure_categories=[0, 1, 2, 3, 4, 5, 6, 7, 8],
     ),
-    "stari_vozidla_vinika": Metric(
+    "rok_vyroby_vozidla_vinika": Metric(
         [caused_by_motor_vehicle_driver, append_first_vehicle],
         by_key("p47"),
         basic_aggregations,
