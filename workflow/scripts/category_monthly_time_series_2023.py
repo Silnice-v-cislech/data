@@ -1,10 +1,14 @@
 from collections import defaultdict
+from datetime import datetime
 
 import pandas as pd
 from metrics.aggregations import basic_aggregations
+from metrics.converters.additions import add_vehicle_age_to_accidents
+from metrics.converters.appends_2023 import append_first_vehicle
+from metrics.converters.cause_filters import caused_by_motor_vehicle_driver
 from metrics.groupings import by_key, main_accident_cause
 from metrics.metric import Metric
-from utils import save_json
+from utils import save_json, zero_monthly_time_series
 
 category_series_blueprint = {
     "druhy_nehod": Metric([], by_key("p6"), basic_aggregations),
@@ -138,6 +142,22 @@ category_series_blueprint = {
         basic_aggregations,
         ensure_categories=[0, 1, 2, 3, 4, 5, 6, 7, 8],
     ),
+    "rok_vyroby_vozidla_vinika": Metric(
+        [caused_by_motor_vehicle_driver, append_first_vehicle],
+        by_key("p47", neq=0),
+        basic_aggregations,
+        ensure_categories=range(1916, datetime.now().year + 1),
+    ),
+    "stari_vozidla_vinika": Metric(
+        [
+            caused_by_motor_vehicle_driver,
+            append_first_vehicle,
+            add_vehicle_age_to_accidents,
+        ],
+        by_key("vehicle_age"),
+        basic_aggregations,
+        ensure_categories=range(0, datetime.now().year - 1916 + 1),
+    ),
 }
 
 calculated_series: dict[
@@ -151,20 +171,28 @@ effects = pd.read_feather(snakemake.input["effects"])
 pedestrians = pd.read_feather(snakemake.input["pedestrians"])
 gps = pd.read_feather(snakemake.input["gps"])
 
-accidents["datetime"] = pd.to_datetime(accidents["p2a"], format="%d.%m.%Y")
+if not accidents.empty:
+    min_date = accidents["datetime"].min()
+    max_date = accidents["datetime"].max()
 
-for series_name, series_metric in category_series_blueprint.items():
-    result = series_metric.apply(
-        accidents=accidents,
-        vehicles=vehicles,
-        effects=effects,
-        pedestrians=pedestrians,
-        gps=gps,
-    )
-    for aggregation, data in result.items():
-        for (year, month, category), value in data.items():
-            calculated_series[series_name][aggregation][int(category)].append(
-                (year, month, value)
+    for series_name, series_metric in category_series_blueprint.items():
+        result = series_metric.apply(
+            accidents=accidents,
+            vehicles=vehicles,
+            effects=effects,
+            pedestrians=pedestrians,
+            gps=gps,
+        )
+        for aggregation, data in result.items():
+            by_category: dict[str, dict[tuple[int, int], int]] = defaultdict(
+                lambda: zero_monthly_time_series(min_date, max_date)
             )
+            for (year, month, category), value in data.items():
+                by_category[category][(year, month)] = value
+
+            for category, series in by_category.items():
+                calculated_series[series_name][aggregation][int(category)] = [
+                    (year, month, value) for (year, month), value in series.items()
+                ]
 
 save_json(snakemake.output[0], calculated_series)
