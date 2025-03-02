@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - First 2025 data
 - Metric for "Rok výroby motorového vozidla viníka"
+- Metric for "Stáří motorového vozidla viníka"
 
 ### Changed
 - Keys sorted in the result

@@ -17,7 +17,7 @@ RESOURCES_DIR = "resources"
 def test_workflow():
 
     workdir = Path("tests") / "integration" / "temp_test_dir"
-    shutil.rmtree(workdir)
+    shutil.rmtree(workdir, ignore_errors=True)
 
     resources_path = PurePosixPath("tests/integration/data") / RESOURCES_DIR
     expected_path = PurePosixPath("tests/integration/expected")

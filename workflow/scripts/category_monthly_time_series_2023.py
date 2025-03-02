@@ -1,7 +1,9 @@
 from collections import defaultdict
+from datetime import datetime
 
 import pandas as pd
 from metrics.aggregations import basic_aggregations
+from metrics.converters.additions import add_vehicle_age_to_accidents
 from metrics.converters.appends_2023 import append_first_vehicle
 from metrics.converters.cause_filters import caused_by_motor_vehicle_driver
 from metrics.groupings import by_key, main_accident_cause
@@ -142,8 +144,19 @@ category_series_blueprint = {
     ),
     "rok_vyroby_vozidla_vinika": Metric(
         [caused_by_motor_vehicle_driver, append_first_vehicle],
-        by_key("p47"),
+        by_key("p47", neq=0),
         basic_aggregations,
+        ensure_categories=range(1916, datetime.now().year + 1),
+    ),
+    "stari_vozidla_vinika": Metric(
+        [
+            caused_by_motor_vehicle_driver,
+            append_first_vehicle,
+            add_vehicle_age_to_accidents,
+        ],
+        by_key("vehicle_age"),
+        basic_aggregations,
+        ensure_categories=range(0, datetime.now().year - 1916 + 1),
     ),
 }
 
@@ -171,7 +184,7 @@ if not accidents.empty:
             gps=gps,
         )
         for aggregation, data in result.items():
-            by_category = defaultdict(
+            by_category: dict[str, dict[tuple[int, int], int]] = defaultdict(
                 lambda: zero_monthly_time_series(min_date, max_date)
             )
             for (year, month, category), value in data.items():
